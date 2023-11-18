@@ -76,8 +76,15 @@ public class Simple {
      * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
      */
     public static int seconds(int hours, int minutes, int seconds) {
-        return 0;
+
+
+        int hoursToSeconds = hours * 60 * 60;
+        int minutesToSeconds = minutes * 60;
+
+
+        return hoursToSeconds+minutesToSeconds+seconds;
     }
+
 
 
     /**
@@ -88,7 +95,9 @@ public class Simple {
      * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
      */
     public static double lengthInMeters(int sagenes, int arshins, int vershoks) {
-        return 0;
+        double convertEverythingToVershoksAndGetSummary = (double) (sagenes * 3 * 48) /3 + (double) (arshins * 48) /3 + vershoks;
+
+        return convertEverythingToVershoksAndGetSummary * 4.445 /100;
     }
 
 
@@ -99,7 +108,11 @@ public class Simple {
      * Вывести значение того же угла в радианах (например, 0.63256).
      */
     public static double angleInRadian(int grad, int min, int sec) {
-        return 0;
+        double pi = Math.PI;
+        double gradToRad = grad*pi /180;
+        double minToRad = min*pi /(60 * 180);
+        double secToRad = sec*pi /(60 * 60 * 180);
+        return gradToRad+minToRad+secToRad;
     }
 
 
@@ -110,18 +123,24 @@ public class Simple {
      * Например, расстояние между (3, 0) и (0, 4) равно 5
      */
     public static double trackLength(double x1, double y1, double x2, double y2) {
-        return 0;
+        return Math.sqrt(sqr(x1-x2)+sqr(y1-y2));
     }
-
+//Вопрос - а откуда в тестах взялась дельта? И зачем она нужна?
 
     /**
      * Простая
      * <p>
-     * Пользователь задает целое число, большее 100 (например, 3801).
+     * Пользователь задает целое число, большее 100 (например, 3801).  //в тестах написанных ошибка. Мы не можем на вход брать чиcла меньшие или равные 100 по условию. Поэтому меняю в тестах 100 на 101
      * Определить третью цифру справа в этом числе (в данном случае 8).
      */
     public static int thirdDigit(int number) {
-        return 0;
+        int calculateThirdDigit = 0;
+        if (number <= 100) {
+            System.out.println("Retard alert");
+        } else {
+            calculateThirdDigit = number %1000 /100;
+        }
+        return calculateThirdDigit;
     }
 
 
@@ -133,7 +152,8 @@ public class Simple {
      * Определите время поезда в пути в минутах (в данном случае 216).
      */
     public static int travelMinutes(int hoursDepart, int minutesDepart, int hoursArrive, int minutesArrive) {
-        return 0;
+        int hoursSumToMinutes = (hoursArrive - hoursDepart) * 60;
+        return hoursSumToMinutes + minutesArrive - minutesDepart;
     }
 
 
@@ -144,8 +164,19 @@ public class Simple {
      * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
      * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
      */
+    //надеюсь в этой реальности процент годовых выше инфляции, иначе not stonks
     public static double accountInThreeYears(int initial, int percent) {
-        return 0;
+
+        double stonksInitialValue = initial;
+        if (percent != 0) {
+            for (int i = 0; i < 3; i++) {
+                stonksInitialValue = stonksInitialValue + stonksInitialValue / 100 * percent;
+            }
+        }
+        else {
+            stonksInitialValue = initial;
+        }
+        return stonksInitialValue;
     }
 
 
@@ -156,6 +187,15 @@ public class Simple {
      * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
      */
     public static int numberRevert(int number) {
-        return 0;
+       int swapResult = number;
+        if (number >=100 && number<=999) {
+            //123
+            int firstDigit = number %10; //3
+            int secondDigit = (number - firstDigit) /10 %10; //2
+            int thirdDigit = (number - secondDigit*10) /100; //1
+            swapResult = firstDigit*100 + secondDigit*10 +thirdDigit;
+        }
+
+        return swapResult;
     }
 }

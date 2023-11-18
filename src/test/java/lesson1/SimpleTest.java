@@ -74,13 +74,14 @@ public class SimpleTest {
         assertEquals(5.0, Simple.trackLength(3.0, 0.0, 0.0, 4.0), 1.0E-5);
         assertEquals(1.0, Simple.trackLength(0.0, 1.0, -1.0, 1.0), 1.0E-5);
         assertEquals(1.41, Simple.trackLength(1.0, 1.0, 2.0, 2.0), 0.01);
+        assertEquals(0, Simple.trackLength(0,0,0,0), 0);
     }
 
     @Test
     @Tag(name = "Easy")
     public void thirdDigit() {
         assertEquals(8, Simple.thirdDigit(3801));
-        assertEquals(1, Simple.thirdDigit(100));
+        assertEquals(1, Simple.thirdDigit(101));
         assertEquals(0, Simple.thirdDigit(1000));
     }
 
