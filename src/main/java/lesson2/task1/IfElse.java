@@ -83,9 +83,36 @@ public class IfElse {
      * и t3 часов — со скоростью v3 км/час.
      * Определить, за какое время он одолел первую половину пути?
      */
+    // 1 1  2 2  3 3
+    // 1    4    9    14
+    //
     public static double timeForHalfWay(double t1, double v1, double t2, double v2, double t3, double v3) {
-        //TODO
-        return 0;
+
+        double firstDist = t1 * v1;
+        double secondDist = t2 * v2;
+        double thirdDist = t3 * v3;
+        double totalDist = firstDist + secondDist + thirdDist;
+        double halfDist = totalDist/2;
+        int halfWayPeriodLocation = 0;
+        double calculateTimeSpentForHalfWay = 0;
+
+        if (firstDist < halfDist) {
+            if (firstDist + secondDist < halfDist) {
+                halfWayPeriodLocation = 3;
+            }
+            else {halfWayPeriodLocation = 2;}
+        }
+        else {halfWayPeriodLocation = 1;}
+
+        if (halfWayPeriodLocation == 1) {
+            calculateTimeSpentForHalfWay = halfDist/v1;
+        } else if (halfWayPeriodLocation == 2) {
+            calculateTimeSpentForHalfWay = t1 + halfDist/v2;
+        } else {
+            calculateTimeSpentForHalfWay = t1 + t2 + halfDist/v3;
+        }
+
+        return calculateTimeSpentForHalfWay;
     }
 
     /**
