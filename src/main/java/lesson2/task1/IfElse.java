@@ -85,6 +85,7 @@ public class IfElse {
      */
     // 1 1  2 2  3 3
     // 1    4    9    14
+    //                7
     //
     public static double timeForHalfWay(double t1, double v1, double t2, double v2, double t3, double v3) {
 
@@ -107,9 +108,9 @@ public class IfElse {
         if (halfWayPeriodLocation == 1) {
             calculateTimeSpentForHalfWay = halfDist/v1;
         } else if (halfWayPeriodLocation == 2) {
-            calculateTimeSpentForHalfWay = t1 + halfDist/v2;
+            calculateTimeSpentForHalfWay = t1 + (halfDist-firstDist)/v2;
         } else {
-            calculateTimeSpentForHalfWay = t1 + t2 + halfDist/v3;
+            calculateTimeSpentForHalfWay = t1 + t2 + (halfDist-firstDist-secondDist)/v3;
         }
 
         return calculateTimeSpentForHalfWay;
@@ -125,8 +126,22 @@ public class IfElse {
      * Считать, что ладьи не могут загораживать друг друга
      */
     public static int whichRookThreatens(int kingX, int kingY, int rookX1, int rookY1, int rookX2, int rookY2) {
-        //TODO
-        return 0;
+        int threatLvl = 0;
+        if ((kingX == rookX1 && kingX == rookX2) || (kingY == rookY1 && kingY == rookY2) || (kingX == rookX1 && kingY == rookY2) || (kingX == rookX2 && kingY == rookY1) ) {
+            threatLvl = 3;
+        }
+            else if (kingX == rookX1 || kingY == rookY1) {
+                threatLvl = 1;
+            }
+            else if (kingX == rookX2 || kingY == rookY2) {
+                threatLvl =2;
+            }
+            else {
+                threatLvl = 0;
+        }
+
+
+        return threatLvl;
     }
 
     /**
