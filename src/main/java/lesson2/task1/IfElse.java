@@ -94,24 +94,16 @@ public class IfElse {
         double thirdDist = t3 * v3;
         double totalDist = firstDist + secondDist + thirdDist;
         double halfDist = totalDist/2;
-        int halfWayPeriodLocation = 0;
-        double calculateTimeSpentForHalfWay = 0;
+        double calculateTimeSpentForHalfWay;
 
         if (firstDist < halfDist) {
             if (firstDist + secondDist < halfDist) {
-                halfWayPeriodLocation = 3;
+                calculateTimeSpentForHalfWay = t1 + t2 + (halfDist-firstDist-secondDist)/v3;;
             }
-            else {halfWayPeriodLocation = 2;}
+            else {calculateTimeSpentForHalfWay = t1 + (halfDist-firstDist)/v2;;}
         }
-        else {halfWayPeriodLocation = 1;}
+        else {calculateTimeSpentForHalfWay = halfDist/v1;;}
 
-        if (halfWayPeriodLocation == 1) {
-            calculateTimeSpentForHalfWay = halfDist/v1;
-        } else if (halfWayPeriodLocation == 2) {
-            calculateTimeSpentForHalfWay = t1 + (halfDist-firstDist)/v2;
-        } else {
-            calculateTimeSpentForHalfWay = t1 + t2 + (halfDist-firstDist-secondDist)/v3;
-        }
 
         return calculateTimeSpentForHalfWay;
     }
