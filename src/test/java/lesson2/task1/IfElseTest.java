@@ -77,6 +77,7 @@ public class IfElseTest {
         assertEquals(1, IfElse.triangleKind(5.0, 3.0, 4.0));
         assertEquals(2, IfElse.triangleKind(4.0, 6.0, 8.0));
         assertEquals(0, IfElse.triangleKind(1.0, 1.5, 1.5));
+        assertEquals(0, IfElse.triangleKind(1.0, 1.0, 1.0));
     }
 
     @Test

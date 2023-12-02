@@ -2,6 +2,7 @@ package lesson2.task1;
 
 import static java.lang.Math.sqrt;
 import static lesson1.Simple.discriminant;
+import static lesson1.Simple.sqr;
 
 public class IfElse {
 
@@ -198,8 +199,18 @@ public class IfElse {
      * Если такой треугольник не существует, вернуть -1.
      */
     public static int triangleKind(double a, double b, double c) {
-        //TODO
-        return 0;
+        if (a<b+c && b<a+c && c<a+b) {
+            if (sqr(a) == sqr(b) + sqr(c) || sqr(b) == sqr(a) + sqr(c) || sqr(c) == sqr(a) + sqr(b)) { //если треугольник прямоугольный
+                return 1;
+            }
+            else if (sqr(a) > sqr(b) + sqr(c) || sqr(b) > sqr(a) + sqr(c) || sqr(c) > sqr(a) + sqr(b) ) { //если треугольник тупоугольный
+                return 2;
+            }
+            return 0;//иначе остроугольный
+        }
+        else {
+            return -1; // если треугольника не существует
+        }
     }
 
 
