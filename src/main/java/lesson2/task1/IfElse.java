@@ -93,16 +93,21 @@ public class IfElse {
         double secondDist = t2 * v2;
         double thirdDist = t3 * v3;
         double totalDist = firstDist + secondDist + thirdDist;
-        double halfDist = totalDist/2;
+        double halfDist = totalDist / 2;
         double calculateTimeSpentForHalfWay;
 
         if (firstDist < halfDist) {
             if (firstDist + secondDist < halfDist) {
-                calculateTimeSpentForHalfWay = t1 + t2 + (halfDist-firstDist-secondDist)/v3;;
+                calculateTimeSpentForHalfWay = t1 + t2 + (halfDist - firstDist - secondDist) / v3;
+                ;
+            } else {
+                calculateTimeSpentForHalfWay = t1 + (halfDist - firstDist) / v2;
+                ;
             }
-            else {calculateTimeSpentForHalfWay = t1 + (halfDist-firstDist)/v2;;}
+        } else {
+            calculateTimeSpentForHalfWay = halfDist / v1;
+            ;
         }
-        else {calculateTimeSpentForHalfWay = halfDist/v1;;}
 
 
         return calculateTimeSpentForHalfWay;
@@ -119,16 +124,13 @@ public class IfElse {
      */
     public static int whichRookThreatens(int kingX, int kingY, int rookX1, int rookY1, int rookX2, int rookY2) {
         int threatLvl = 0;
-        if ((kingX == rookX1 && kingX == rookX2) || (kingY == rookY1 && kingY == rookY2) || (kingX == rookX1 && kingY == rookY2) || (kingX == rookX2 && kingY == rookY1) ) {
+        if ((kingX == rookX1 && kingX == rookX2) || (kingY == rookY1 && kingY == rookY2) || (kingX == rookX1 && kingY == rookY2) || (kingX == rookX2 && kingY == rookY1)) {
             threatLvl = 3;
+        } else if (kingX == rookX1 || kingY == rookY1) {
+            threatLvl = 1;
+        } else if (kingX == rookX2 || kingY == rookY2) {
+            threatLvl = 2;
         }
-            else if (kingX == rookX1 || kingY == rookY1) {
-                threatLvl = 1;
-            }
-            else if (kingX == rookX2 || kingY == rookY2) {
-                threatLvl =2;
-            }
-
 
 
         return threatLvl;
@@ -149,49 +151,19 @@ public class IfElse {
         int threatFromRook = 0;
         int threatFromBishop = 0;
 
-        boolean ifRookAndKingDiag = Math.abs(rookX-kingX) == Math.abs(rookY-kingY);
-        boolean ifRookAndBishopDiag = Math.abs(rookX-bishopX) == Math.abs(rookY-bishopY);
-        boolean rookXDistToKingXMoreThanBishopXDistToKingX = Math.abs(rookX - kingX) > Math.abs(bishopX - kingX);
+        boolean ifRookAndKingDiag = Math.abs(rookX - kingX) == Math.abs(rookY - kingY);
 
         if (kingX == rookX || kingY == rookY) {//Если ладья и король на одном x или y
-
-            if (kingX == rookX & kingX == bishopX) { //Если все 3 фигуры на одном x и ладью загораживает слон
-                if (Math.abs(rookY - kingY) > Math.abs(bishopY - kingY)) {
-                    threatFromRook = 0;
-                }
-            }
-
-            if (kingY == rookY & kingY == bishopY) { //Если все 3 фигуры на одном y и ладью загораживает слон
-                if (rookXDistToKingXMoreThanBishopXDistToKingX) {
-                    threatFromRook = 0;
-                }
-            }
             threatFromRook = 1;
         }
 
 
-            if (ifRookAndKingDiag) {//Если ладья и король по диагонали
-                if (Math.abs(bishopX-kingX) == Math.abs(bishopY-kingY)) {//Если слон тоже по диагонали к королю
-                    if (ifRookAndBishopDiag) {//Если ладья и слон по диагонали друг к другу
-                       if (rookXDistToKingXMoreThanBishopXDistToKingX) {
-                           threatFromRook = 0;
-                       }
-                    }
-
-                }
-                threatFromRook = 1;
-            }
+        if (ifRookAndKingDiag) {//Если ладья и король по диагонали
+            threatFromRook = 1;
+        }
 
 
-        if (Math.abs(kingX-bishopX) == Math.abs(kingY-bishopY)) {//Если слон по диагонали с королем
-            if (ifRookAndKingDiag) {//Если ладья тоже по диагонали с королем
-                if(ifRookAndBishopDiag) {//Если слон и ладья по диагонали друг с другом
-                    if(!rookXDistToKingXMoreThanBishopXDistToKingX) {//Если слон дальше чем ладья
-                        threatFromBishop = 0;
-                    }
-
-                }
-            }
+        if (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY)) {//Если слон по диагонали с королем
 
             threatFromBishop = 1;
 
@@ -199,13 +171,16 @@ public class IfElse {
 
         if (threatFromRook == 1) {
             if (threatFromBishop == 1) {
-                threatLvl = 2;  //пачему
+                threatLvl = 3;
+            } else {
+                threatLvl = 1;
             }
-            threatLvl = 1;
         }
 
         if (threatFromBishop == 1) {
             if (threatFromRook == 1) {
+                threatLvl = 3;
+            } else {
                 threatLvl = 2;
             }
         }
