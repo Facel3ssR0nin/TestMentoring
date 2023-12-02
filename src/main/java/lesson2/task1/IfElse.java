@@ -128,9 +128,7 @@ public class IfElse {
             else if (kingX == rookX2 || kingY == rookY2) {
                 threatLvl =2;
             }
-            else {
-                threatLvl = 0;
-        }
+
 
 
         return threatLvl;
@@ -147,8 +145,73 @@ public class IfElse {
      * Считать, что ладья и слон не могут загораживать друг друга.
      */
     public static int rookOrBishopThreatens(int kingX, int kingY, int rookX, int rookY, int bishopX, int bishopY) {
-        //TODO
-        return 0;
+        int threatLvl = 0;
+        int threatFromRook = 0;
+        int threatFromBishop = 0;
+
+        boolean ifRookAndKingDiag = Math.abs(rookX-kingX) == Math.abs(rookY-kingY);
+        boolean ifRookAndBishopDiag = Math.abs(rookX-bishopX) == Math.abs(rookY-bishopY);
+        boolean rookXDistToKingXMoreThanBishopXDistToKingX = Math.abs(rookX - kingX) > Math.abs(bishopX - kingX);
+
+        if (kingX == rookX || kingY == rookY) {//Если ладья и король на одном x или y
+
+            if (kingX == rookX & kingX == bishopX) { //Если все 3 фигуры на одном x и ладью загораживает слон
+                if (Math.abs(rookY - kingY) > Math.abs(bishopY - kingY)) {
+                    threatFromRook = 0;
+                }
+            }
+
+            if (kingY == rookY & kingY == bishopY) { //Если все 3 фигуры на одном y и ладью загораживает слон
+                if (rookXDistToKingXMoreThanBishopXDistToKingX) {
+                    threatFromRook = 0;
+                }
+            }
+            threatFromRook = 1;
+        }
+
+
+            if (ifRookAndKingDiag) {//Если ладья и король по диагонали
+                if (Math.abs(bishopX-kingX) == Math.abs(bishopY-kingY)) {//Если слон тоже по диагонали к королю
+                    if (ifRookAndBishopDiag) {//Если ладья и слон по диагонали друг к другу
+                       if (rookXDistToKingXMoreThanBishopXDistToKingX) {
+                           threatFromRook = 0;
+                       }
+                    }
+
+                }
+                threatFromRook = 1;
+            }
+
+
+        if (Math.abs(kingX-bishopX) == Math.abs(kingY-bishopY)) {//Если слон по диагонали с королем
+            if (ifRookAndKingDiag) {//Если ладья тоже по диагонали с королем
+                if(ifRookAndBishopDiag) {//Если слон и ладья по диагонали друг с другом
+                    if(!rookXDistToKingXMoreThanBishopXDistToKingX) {//Если слон дальше чем ладья
+                        threatFromBishop = 0;
+                    }
+
+                }
+            }
+
+            threatFromBishop = 1;
+
+        }
+
+        if (threatFromRook == 1) {
+            if (threatFromBishop == 1) {
+                threatLvl = 2;  //пачему
+            }
+            threatLvl = 1;
+        }
+
+        if (threatFromBishop == 1) {
+            if (threatFromRook == 1) {
+                threatLvl = 2;
+            }
+        }
+
+
+        return threatLvl;
     }
 
     /**
