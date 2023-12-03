@@ -224,8 +224,24 @@ public class IfElse {
      * (Можно написать двумя способами - через switch statement или if statement
      * будет классно, если будут имплементированы оба и будет написан второй тест)
      */
+
+    // acbd acdb cabd cadb
+
     public static int segmentLength(int a, int b, int c, int d) {
-        //TODO
-        return 0;
+        if (!(a <= c && c <= b && b <= d || a <= c && c <= d && d <= b || c <= a && a <= b && b <= d || c <= a && a <= d && d <= b)) { //если нет пересечения
+            return -1;
+        }
+        else if (a <= c && c <= b && b <= d) { //acbd
+          return b - c;
+        }
+        else if (a <= c && c <= d && d <= b) { //acdb
+            return d - c;
+        }
+        else if (c <= a && a <= b && b <= d) { //cabd
+            return b - a;
+        }
+        else {
+            return d - a; //cadb
+        }
     }
 }
