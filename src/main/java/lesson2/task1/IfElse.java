@@ -244,4 +244,21 @@ public class IfElse {
             return d - a; //cadb
         }
     }
+
+    /**
+     * Средняя
+     * <p>
+     * Даны четыре точки на одной прямой: A, B, C и D.
+     * Координаты точек a, b, c, d соответственно, b >= a, d >= c.
+     * Найти длину пересечения отрезков AB и CD.
+     * Если пересечения нет, вернуть -1.
+     * (Можно написать двумя способами - через switch statement или if statement
+     * будет классно, если будут имплементированы оба и будет написан второй тест)
+     */
+
+    // acbd acdb cabd cadb
+    public static int segmentLengthSwitchCase(int a, int b, int c, int d) {
+
+        return a;
+    }
 }

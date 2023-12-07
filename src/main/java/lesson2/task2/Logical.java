@@ -19,8 +19,12 @@ public class Logical {
      * Определить, счастливое ли заданное число, вернуть true, если это так.
      */
     public static boolean isNumberHappy(int number) {
-        //TODO
-        return false;
+        int firstNum = number/1000;
+        int secondNum = number%1000 /100;
+        int thirdNum =number%100 /10;
+        int fourthNum =number%10;
+
+        return firstNum + secondNum == thirdNum + fourthNum;
     }
 
     /**

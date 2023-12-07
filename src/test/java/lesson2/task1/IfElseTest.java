@@ -90,5 +90,7 @@ public class IfElseTest {
         assertEquals(2, IfElse.segmentLength(2, 5, 3, 9));
         assertEquals(1, IfElse.segmentLength(3, 6, 1, 4));
         assertEquals(4, IfElse.segmentLength(1, 15, 10, 14));
+        assertEquals(0, IfElse.segmentLength(1, 1, 1, 1));
+
     }
 }
