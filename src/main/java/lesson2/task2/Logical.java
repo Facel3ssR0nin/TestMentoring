@@ -49,8 +49,31 @@ public class Logical {
      * Вернуть число дней в этом месяце этого года по григорианскому календарю.
      */
     public static int daysInMonth(int month, int year) {
-        //TODO
-        return 0;
+        boolean isLeapYear = year % 400 == 0 || year % 4 == 0 && year % 100 != 0;
+        int extractedDays;
+
+       switch (month) {
+            case 1,3,5,7,8,10,12:
+                extractedDays = 31;
+                break;
+            case 4,6,9,11:
+                extractedDays = 30;
+                break;
+            case 2:
+                if (isLeapYear) {
+                    extractedDays = 29;
+                }
+                else {
+                    extractedDays = 28;
+                }
+                break;
+            default:
+                extractedDays = 0;
+                System.out.println("неверно указан месяц " + month);
+                break;
+        }
+        return extractedDays;
+
     }
 
     /**
