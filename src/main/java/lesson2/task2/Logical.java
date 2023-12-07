@@ -35,8 +35,11 @@ public class Logical {
      * Считать, что ферзи не могут загораживать друг друга.
      */
     public static boolean queenThreatens(int x1, int y1, int x2, int y2) {
-        //TODO
-        return false;
+
+
+        if (x1 == x2 || y1 == y2) {
+            return true;
+        } else return Math.abs(x1 - x2) == Math.abs(y1 - y2);
     }
 
     /**
