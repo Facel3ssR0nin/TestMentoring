@@ -52,25 +52,20 @@ public class Logical {
         boolean isLeapYear = year % 400 == 0 || year % 4 == 0 && year % 100 != 0;
         int extractedDays;
 
-       switch (month) {
-            case 1,3,5,7,8,10,12:
-                extractedDays = 31;
-                break;
-            case 4,6,9,11:
-                extractedDays = 30;
-                break;
-            case 2:
+        switch (month) {
+            case 1, 3, 5, 7, 8, 10, 12 -> extractedDays = 31;
+            case 4, 6, 9, 11 -> extractedDays = 30;
+            case 2 -> {
                 if (isLeapYear) {
                     extractedDays = 29;
-                }
-                else {
+                } else {
                     extractedDays = 28;
                 }
-                break;
-            default:
+            }
+            default -> {
                 extractedDays = 0;
                 System.out.println("неверно указан месяц " + month);
-                break;
+            }
         }
         return extractedDays;
 
