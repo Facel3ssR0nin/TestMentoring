@@ -44,6 +44,7 @@ public class LogicalTest {
         assertEquals(29, Logical.daysInMonth(2, 1996));
         assertEquals(28, Logical.daysInMonth(2, 1900));
         assertEquals(29, Logical.daysInMonth(2, 2000));
+        assertEquals(0, Logical.daysInMonth(0, 2000));
     }
 
     @Test

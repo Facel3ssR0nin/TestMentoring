@@ -50,24 +50,22 @@ public class Logical {
      */
     public static int daysInMonth(int month, int year) {
         boolean isLeapYear = year % 400 == 0 || year % 4 == 0 && year % 100 != 0;
-        int extractedDays;
 
-        switch (month) {
-            case 1, 3, 5, 7, 8, 10, 12 -> extractedDays = 31;
-            case 4, 6, 9, 11 -> extractedDays = 30;
+        return switch (month) {
+            case 1, 3, 5, 7, 8, 10, 12 -> 31;
+            case 4, 6, 9, 11 -> 30;
             case 2 -> {
                 if (isLeapYear) {
-                    extractedDays = 29;
+                    yield 29;
                 } else {
-                    extractedDays = 28;
+                    yield 28;
                 }
             }
             default -> {
-                extractedDays = 0;
-                System.out.println("неверно указан месяц " + month);
+                System.out.println("Месяца " + month + " не существует" );
+                yield 0;
             }
-        }
-        return extractedDays;
+        };
 
     }
 
