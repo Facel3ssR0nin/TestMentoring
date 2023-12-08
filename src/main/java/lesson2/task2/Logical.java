@@ -79,8 +79,8 @@ public class Logical {
      * Вернуть true, если утверждение верно
      */
     public static boolean circleInside(double x1, double y1, double r1, double x2, double y2, double r2) {
-        //TODO
-        return false;
+        double distBetweenDots = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+        return distBetweenDots + r1 <= r2;
     }
 
     /**
