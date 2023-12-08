@@ -66,8 +66,17 @@ public class Loops {
      * Использовать операции со строками в этой задаче запрещается.
      */
     public static int digitNumber(int n) {
-        //TODO
-        return 0;
+        int i=0;
+        if (n>0) {
+            while (n > 0) {
+                n = n / 10;
+                i++;
+            }
+        }
+        else {
+            i=1;
+        }
+        return i;
     }
 
     /**
